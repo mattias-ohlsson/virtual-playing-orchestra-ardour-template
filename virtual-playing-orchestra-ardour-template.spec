@@ -60,6 +60,12 @@ install -d %{buildroot}%{_datadir}/ardour6/templates
 cp -r "Virtual Playing Orchestra" %{buildroot}%{_datadir}/ardour5/templates/
 cp -r "Virtual Playing Orchestra" %{buildroot}%{_datadir}/ardour6/templates/
 
+# https://discourse.ardour.org/t/templates-sometimes-include-absolute-paths-with-my-home-dir/89283 
+sed -i 's|/Users/michaelwillis/Library/Preferences/Ardour5|%{_datadir}/ardour5|g' \
+ "%{buildroot}%{_datadir}/ardour5/templates/Virtual Playing Orchestra/Virtual Playing Orchestra.template"
+sed -i 's|/Users/michaelwillis/Library/Preferences/Ardour5|%{_datadir}/ardour5|g' \
+ "%{buildroot}%{_datadir}/ardour6/templates/Virtual Playing Orchestra/Virtual Playing Orchestra.template"
+
 %files
 %license license.txt
 %doc readme.md seating.png
